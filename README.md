@@ -1,7 +1,7 @@
-<h1 align="center">Insight-api-dash</h1>
+<h1 align="center">insight-pac-api</h1>
 
 <div align="center">
-  <strong>A Dash blockchain REST and WebSocket API Service</strong>
+  <strong>A $PAC blockchain REST and WebSocket API Service</strong>
 </div>
 <br />
 <div align="center">
@@ -11,17 +11,17 @@
       alt="API stability" />
   </a>
   <!-- Build Status -->
-  <a href="https://travis-ci.org/dashevo/insight-api-dash">
-    <img src="https://img.shields.io/travis/dashevo/insight-api-dash/master.svg?style=flat-square" alt="Build Status" />
+  <a href="https://travis-ci.org/PACCommunity/insight-pac-api">
+    <img src="https://img.shields.io/travis/PACCommunity/insight-pac-api/master.svg?style=flat-square" alt="Build Status" />
   </a>
   <!-- NPM version -->
-  <a href="https://npmjs.org/package/insight-api-dash">
-    <img src="https://img.shields.io/npm/v/insight-api-dash.svg?style=flat-square" alt="NPM version" />
+  <a href="https://npmjs.org/package/insight-pac-api">
+    <img src="https://img.shields.io/npm/v/insight-pac-api.svg?style=flat-square" alt="NPM version" />
   </a>
 </div>
 
 
-This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/dashpay/insight-ui-dash.
+This is a backend-only service. If you're looking for the web frontend application, take a look at https://github.com/PACCommunity/insight-pac-ui.
 
 ## Table of Content
 - [Getting Started](#getting-started)
@@ -55,25 +55,25 @@ This is a backend-only service. If you're looking for the web frontend applicati
 - [Notes on Upgrading from v0.3](#notes-on-upgrading-from-v03)
 - [Notes on Upgrading from v0.2](#notes-on-upgrading-from-v02)
 - [Resources](#resources)
-- [License](https://github.com/dashevo/insight-api-dash/blob/master/LICENSE)
+- [License](https://github.com/PACCommunity/insight-pac-api/blob/master/LICENSE)
 
 ## Getting Started
 
 ```bashl
-npm install -g bitcore-node-dash@latest
-bitcore-node-dash create mynode
+npm install -g bitcore-node-pac@latest
+bitcore-node-pac create mynode
 cd mynode
-bitcore-node-dash install insight-api-dash
-bitcore-node-dash start
+bitcore-node-pac install insight-pac-api
+bitcore-node-pac start
 ```
 
-The API endpoints will be available by default at: `http://localhost:3001/insight-api-dash/`
+The API endpoints will be available by default at: `http://localhost:3001/insight-pac-api/`
 
 ### Prerequisites
 
-- [Bitcore Node Dash 3.x](https://github.com/dashevo/bitcore-node-dash)
+- [Bitcore Node $PAC 3.x](https://github.com/PACCommunity/bitcore-node-pac)
 
-**Note:** You can use an existing Dash data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `dash.conf`, as well as a few other additional fields.
+**Note:** You can use an existing $PAC data directory, however `txindex`, `addressindex`, `timestampindex` and `spentindex` needs to be set to true in `paccoin.conf`, as well as a few other additional fields.
 
 ### Query Rate Limit
 
@@ -103,15 +103,15 @@ Or disabled entirely with:
 
 ### Block
 ```
-  /insight-api-dash/block/[:hash]
-  /insight-api-dash/block/0000000006e7b38e8ab2d351239019c01de9a148b5baef58cfe52dfd9917cedc
+  /insight-pac-api/block/[:hash]
+  /insight-pac-api/block/0000000006e7b38e8ab2d351239019c01de9a148b5baef58cfe52dfd9917cedc
 ```
 
 ### Block Index
 Get block hash by height
 ```
-  /insight-api-dash/block-index/[:height]
-  /insight-api-dash/block-index/0
+  /insight-pac-api/block-index/[:height]
+  /insight-pac-api/block-index/0
 ```
 This would return:
 ```
@@ -124,7 +124,7 @@ which is the hash of the TestNet Genesis block (0 height)
 
 ### Raw Block
 ```
-  /insight-api-dash/rawblock/[:blockHash]
+  /insight-pac-api/rawblock/[:blockHash]
 ```
 
 This would return:
@@ -138,7 +138,7 @@ This would return:
 
 Get block summaries by date:
 ```
-  /insight-api-dash/blocks?limit=3&blockDate=2017-04-22
+  /insight-pac-api/blocks?limit=3&blockDate=2017-04-22
 ```
 
 Example response:
@@ -172,31 +172,31 @@ Example response:
 
 ### Transaction
 ```
-  /insight-api-dash/tx/[:txid]
-  /insight-api-dash/tx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
-  /insight-api-dash/rawtx/[:rawid]
-  /insight-api-dash/rawtx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
+  /insight-pac-api/tx/[:txid]
+  /insight-pac-api/tx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
+  /insight-pac-api/rawtx/[:rawid]
+  /insight-pac-api/rawtx/ebdca263fe1c75c8609ce8fe3d82a320a0b3ca840f4df995883f5dab1b9ff8d9
 ```
 
 ### Address
 ```
-  /insight-api-dash/addr/[:addr][?noTxList=1][&from=&to=]
-  /insight-api-dash/addr/ybi3gej7Ea1MysEYLR7UMs3rMuLJH5aVsW?noTxList=1
-  /insight-api-dash/addr/yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA?from=1000&to=2000
+  /insight-pac-api/addr/[:addr][?noTxList=1][&from=&to=]
+  /insight-pac-api/addr/ybi3gej7Ea1MysEYLR7UMs3rMuLJH5aVsW?noTxList=1
+  /insight-pac-api/addr/yPv7h2i8v3dJjfSH4L3x91JSJszjdbsJJA?from=1000&to=2000
 ```
 
 ### Address Properties
 ```
-  /insight-api-dash/addr/[:addr]/balance
-  /insight-api-dash/addr/[:addr]/totalReceived
-  /insight-api-dash/addr/[:addr]/totalSent
-  /insight-api-dash/addr/[:addr]/unconfirmedBalance
+  /insight-pac-api/addr/[:addr]/balance
+  /insight-pac-api/addr/[:addr]/totalReceived
+  /insight-pac-api/addr/[:addr]/totalSent
+  /insight-pac-api/addr/[:addr]/unconfirmedBalance
 ```
 The response contains the value in Satoshis.
 
 ### Unspent Outputs
 ```
-  /insight-api-dash/addr/[:addr]/utxo
+  /insight-pac-api/addr/[:addr]/utxo
 ```
 Sample return:
 ```
@@ -217,13 +217,13 @@ Sample return:
 ### Unspent Outputs for Multiple Addresses
 GET method:
 ```
-  /insight-api-dash/addrs/[:addrs]/utxo
-  /insight-api-dash/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx/utxo
+  /insight-pac-api/addrs/[:addrs]/utxo
+  /insight-pac-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx/utxo
 ```
 
 POST method:
 ```
-  /insight-api-dash/addrs/utxo
+  /insight-pac-api/addrs/utxo
 ```
 
 POST params:
@@ -257,25 +257,25 @@ Sample output:
 
 ### Transactions by Block
 ```
-  /insight-api-dash/txs/?block=HASH
-  /insight-api-dash/txs/?block=000000000814dd7cf470bd835334ea6624ebf0291ea857a5ab37c65592726375
+  /insight-pac-api/txs/?block=HASH
+  /insight-pac-api/txs/?block=000000000814dd7cf470bd835334ea6624ebf0291ea857a5ab37c65592726375
 ```
 ### Transactions by Address
 ```
-  /insight-api-dash/txs/?address=ADDR
-  /insight-api-dash/txs/?address=yWFfdp9nLUjy1kJczFhRuBMUjtTkTTiyMv
+  /insight-pac-api/txs/?address=ADDR
+  /insight-pac-api/txs/?address=yWFfdp9nLUjy1kJczFhRuBMUjtTkTTiyMv
 ```
 
 ### Transactions for Multiple Addresses
 GET method:
 ```
-  /insight-api-dash/addrs/[:addrs]/txs[?from=&to=]
-  /insight-api-dash/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx/txs?from=0&to=20
+  /insight-pac-api/addrs/[:addrs]/txs[?from=&to=]
+  /insight-pac-api/addrs/ygwNQgE5f15Ygopbs2KPRYMS4TcffqBpsz,ygw5yCtVkx3hREke4L8qDqQtnNoAiPKTSx/txs?from=0&to=20
 ```
 
 POST method:
 ```
-  /insight-api-dash/addrs/txs
+  /insight-pac-api/addrs/txs
 ```
 
 POST params:
@@ -324,7 +324,7 @@ Note: if pagination params are not specified, the result is an array of transact
 #### Standard transaction 
 POST method:
 ```
-  /insight-api-dash/tx/send
+  /insight-pac-api/tx/send
 ```
 POST params:
 ```
@@ -357,7 +357,7 @@ Conditions :
 
 POST method:
 ```
-  /insight-api-dash/tx/sendix
+  /insight-pac-api/tx/sendix
 ```
 POST params:
 ```
@@ -373,7 +373,7 @@ POST response:
 ### Sporks List 
 GET method: 
 ```
-  /insight-api-dash/sporks
+  /insight-pac-api/sporks
 ```
 
 Sample output: 
@@ -396,7 +396,7 @@ Sample output:
 ### Budget Proposal List
 GET method:
 ```
-  /insight-api-dash/gobject/list/proposal
+  /insight-pac-api/gobject/list/proposal
 ```
 
 Sample output:
@@ -409,7 +409,7 @@ Sample output:
           payment_amount: 5,
           start_epoch: 1482105600,
           type: 1,
-          url: 'https://www.dash.org'
+          url: 'https://www.paccoin.net'
         },
         AbsoluteYesCount: 40,
         YesCount: 40,
@@ -420,8 +420,8 @@ Sample output:
 ### Budget Proposal Detail
 GET method:
 ```
-  /insight-api-dash/gobject/get/[:hash]
-  /insight-api-dash/gobject/get/b6af3e70c686f660541a77bc035df2e5e46841020699ce3ec8fad786f7d1aa35
+  /insight-pac-api/gobject/get/[:hash]
+  /insight-pac-api/gobject/get/b6af3e70c686f660541a77bc035df2e5e46841020699ce3ec8fad786f7d1aa35
 ```
 
 Sample output:
@@ -436,7 +436,7 @@ Sample output:
           payment_amount: 5,
           start_epoch: 1482105600,
           type: 1,
-          url: 'https://www.dash.org'
+          url: 'https://www.paccoin.net'
         },
         CreationTime: 1482223714,
         FundingResult: {
@@ -467,12 +467,12 @@ Sample output:
 
 ### Masternodes List
 ```
-  /insight-api-dash/masternodes/list
+  /insight-pac-api/masternodes/list
 ```
 ### Validate Masternode
 ```
-  /insight-api-dash/masternodes/validate/[:payee]
-  /insight-api-dash/masternodes/validate/yRuALkPpeYpTgxdNn2L5YgGktASJYDYPAo
+  /insight-pac-api/masternodes/validate/[:payee]
+  /insight-pac-api/masternodes/validate/yRuALkPpeYpTgxdNn2L5YgGktASJYDYPAo
 ```
 
 Sample valid output:
@@ -492,17 +492,17 @@ Sample valid output:
 
 ### Historic Blockchain Data Sync Status
 ```
-  /insight-api-dash/sync
+  /insight-pac-api/sync
 ```
 
 ### Live Network P2P Data Sync Status
 ```
-  /insight-api-dash/peer
+  /insight-pac-api/peer
 ```
 
 ### Status of the Bitcoin Network
 ```
-  /insight-api-dash/status?q=xxx
+  /insight-pac-api/status?q=xxx
 ```
 
 Where "xxx" can be:
@@ -515,7 +515,7 @@ Where "xxx" can be:
 
 ### Utility Methods
 ```
-  /insight-api-dash/utils/estimatefee[?nbBlocks=2]
+  /insight-pac-api/utils/estimatefee[?nbBlocks=2]
 ```
 
 ## Web Socket API
@@ -678,4 +678,4 @@ Caching support has not yet been added in the v0.3 upgrade.
 
 ## Resources
 
-- (Medium)[How to setup a Dash Instant-Send Transaction using Insight API?????????The comprehensive way](https://medium.com/@obusco/setup-instant-send-transaction-the-comprehensive-way-a80a8a0572e)
+- (Medium)[How to setup a $PAC Instant-Send Transaction using Insight API?????????The comprehensive way](https://medium.com/@obusco/setup-instant-send-transaction-the-comprehensive-way-a80a8a0572e)
