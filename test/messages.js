@@ -3,16 +3,16 @@
 var should = require('should');
 var sinon = require('sinon');
 var MessagesController = require('../lib/messages');
-var bitcore = require('bitcore-lib-dash');
+var bitcore = require('bitcore-lib-pac');
 var _ = require('lodash');
 
 describe('Messages', function() {
 
-  var privateKey = bitcore.PrivateKey.fromWIF('cQwApHAg8hw9AZuxiU4a7g9kFWdaemhPxVZXWiAKgJTx6dPP32fN');
-  var address = 'yYjwsLsPUmsfe3RJ5YqZdJYC2Y9tzHYMWL';
-  var badAddress = 'yYjwsLsPUmsfe3RJ5YqZdJYC2Y9tzHYMWW';
-  var signature = 'H2TSaZyMt9/oLqqgQzE2iBKNlPVfPp6XOVP7LiNDFU3sdiHahS+aemajhhp4XDaRClee/hlUkJtF0Nuqm3egpPw=';
-  var message = 'cellar door';
+  var privateKey = bitcore.PrivateKey.fromWIF('cVfhCQxFTKEzR9jNC7pFZqrznfMMvDZHad7F1Gqcx6zKDmw1juUt');
+  var address = 'qR7qGwBRKoUvVb5mMHa7VTRsWCaqVebrmT';
+  var badAddress = 'qLZggkuxJBnrBxjxwHpEAzFGPmfcF2pnWe';
+  var signature = 'H45Xgb5JoNblvCPWpgbFB6YKJgbw4SpxwQFdTzv07XMwUo2UN9ZMJawA+HEny7ZO7IrWTvKiAOez4n4xipHYJiw=';
+  var message = 'Quiero tacos y cerveza';
 
   it('will verify a message (true)', function(done) {
 
@@ -71,12 +71,12 @@ describe('Messages', function() {
     var send = sinon.stub();
     var status = sinon.stub().returns({send: send});
     var res = {
-      status: status,
+      json: function(data) {
+        data.result.should.equal(false);
+        done();
+      }
     };
     controller.verify(req, res);
-    status.args[0][0].should.equal(400);
-    send.args[0][0].should.equal('Unexpected error: Checksum mismatch. Code:1');
-    done();
   });
 
   it('handle error with missing parameters', function(done) {

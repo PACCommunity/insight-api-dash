@@ -3,7 +3,7 @@ var sinon = require('sinon');
 var should = require('should');
 var AddressController = require('../lib/addresses');
 var _ = require('lodash');
-var bitcore = require('bitcore-lib-dash');
+var bitcore = require('bitcore-lib-pac');
 
 var txinfos = {
   totalCount: 2,
@@ -104,7 +104,7 @@ var tx = {
   feeSatoshis: 10000,
   inputs: [
     {
-      address: 'yU4ALabEhMFaXtqJBGRKySW4qCXQG365uR',
+      address: 'qbMjsLAJTU41hE1dSwiSgLSCjz7fmuWB7D',
       prevTxId: 'ea97726ffc529808094ae5568342267931a058375a20147535a0d095837079f3',
       outputIndex: 1,
       sequence: 4294967295,
@@ -113,7 +113,7 @@ var tx = {
       satoshis: 53540000,
     },
     {
-      address: 'ygKnjKcpevopnXUQFD9CrQ4huRmspzbajv',
+      address: 'qJEZGEZf6qFqGbk81LzvSmXDxw9V3PyuLH',
       prevTxId: '980a9cc2dbc2d3464eb9900ae6d579a03045408563320f62d99316c3d4ff58b7',
       outputIndex: 2,
       sequence: 4294967295,
@@ -127,16 +127,16 @@ var tx = {
       satoshis: 220000,
       script: '76a914b9bbd76588d9e4e09f0369a9aa0b2749a11c4e8d88ac',
       scriptAsm: 'OP_DUP OP_HASH160 b9bbd76588d9e4e09f0369a9aa0b2749a11c4e8d OP_EQUALVERIFY OP_CHECKSIG',
-      address: 'ydFWt96q1AJzG7rQQPYygGpnRG3djmG8nJ'
+      address: 'qagS4nZ2eMzCzN1UcmsUu1fnGZxvR26DDG'
     },
     {
       satoshis: 53320000,
-      address: 'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE',
+      address: 'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A',
       script: '76a914d2ec20bb8e5f25a52f730384b803d95683250e0b88ac',
       scriptAsm: 'OP_DUP OP_HASH160 d2ec20bb8e5f25a52f730384b803d95683250e0b OP_EQUALVERIFY OP_CHECKSIG'
     },
     {
-      address: 'yUN2ZHVcy18UFmSAcrYWZgyz1NyhzY9BD7',
+      address: 'qJRMt7sjnBkPjw2XscrMKUmaXbhaWKdBPa',
       satoshis: 289829,
       script: '76a914583df9fa56ad961051e00ca93e68dfaf1eab9ec588ac',
       scriptAsm: 'OP_DUP OP_HASH160 583df9fa56ad961051e00ca93e68dfaf1eab9ec5 OP_EQUALVERIFY OP_CHECKSIG'
@@ -156,7 +156,7 @@ var txinfos2 = {
 
 var utxos = [
   {
-    'address': 'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE',
+    'address': 'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A',
     'txid': '63b68becb0e514b32317f4b29a5cf0627d4087e54ac17f686fcb1d9a27680f73',
     'outputIndex': 1,
     'timestamp': 1441116143,
@@ -166,7 +166,7 @@ var utxos = [
     'confirmations': 50
   },
   {
-    'address': 'yUN2ZHVcy18UFmSAcrYWZgyz1NyhzY9BD7',
+    'address': 'qJRMt7sjnBkPjw2XscrMKUmaXbhaWKdBPa',
     'txid': '63b68becb0e514b32317f4b29a5cf0627d4087e54ac17f686fcb1d9a27680f73',
     'outputIndex': 2,
     'timestamp': 1441116143,
@@ -309,7 +309,7 @@ describe('Addresses', function() {
     it('should have correct data', function(done) {
       var insight = [
         {
-          'address': 'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE',
+          'address': 'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A',
           'txid': '63b68becb0e514b32317f4b29a5cf0627d4087e54ac17f686fcb1d9a27680f73',
           'vout': 1,
           'ts': 1441116143,
@@ -340,7 +340,7 @@ describe('Addresses', function() {
       var addresses = new AddressController(node);
 
       var req = {
-        addr: 'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE'
+        addr: 'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A'
       };
 
       var res = {
@@ -359,7 +359,7 @@ describe('Addresses', function() {
     it('should have the correct data', function(done) {
       var insight = [
         {
-          'address': 'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE',
+          'address': 'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A',
           'txid': '63b68becb0e514b32317f4b29a5cf0627d4087e54ac17f686fcb1d9a27680f73',
           'vout': 1,
           'ts': 1441116143,
@@ -371,7 +371,7 @@ describe('Addresses', function() {
           'confirmationsFromCache': true
         },
         {
-          'address': 'yUN2ZHVcy18UFmSAcrYWZgyz1NyhzY9BD7',
+          'address': 'qJRMt7sjnBkPjw2XscrMKUmaXbhaWKdBPa',
           'txid': '63b68becb0e514b32317f4b29a5cf0627d4087e54ac17f686fcb1d9a27680f73',
           'vout': 2,
           'ts': 1441116143,
@@ -404,7 +404,7 @@ describe('Addresses', function() {
       var addresses = new AddressController(node);
 
       var req = {
-        addrs: 'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE,yUN2ZHVcy18UFmSAcrYWZgyz1NyhzY9BD7'
+        addrs: 'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A,qJRMt7sjnBkPjw2XscrMKUmaXbhaWKdBPa'
       };
 
       var res = {
@@ -441,7 +441,7 @@ describe('Addresses', function() {
                 },
                 'sequence': 4294967295,
                 'n': 0,
-                'addr': 'yU4ALabEhMFaXtqJBGRKySW4qCXQG365uR',
+                'addr': 'qbMjsLAJTU41hE1dSwiSgLSCjz7fmuWB7D',
                 'valueSat': 53540000,
                 'value': 0.5354,
                 'doubleSpentTxID': null
@@ -455,7 +455,7 @@ describe('Addresses', function() {
                 },
                 'sequence': 4294967295,
                 'n': 1,
-                'addr': 'ygKnjKcpevopnXUQFD9CrQ4huRmspzbajv',
+                'addr': 'qJEZGEZf6qFqGbk81LzvSmXDxw9V3PyuLH',
                 'valueSat': 299829,
                 'value': 0.00299829,
                 'doubleSpentTxID': null
@@ -471,7 +471,7 @@ describe('Addresses', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'ydFWt96q1AJzG7rQQPYygGpnRG3djmG8nJ'
+                    'qagS4nZ2eMzCzN1UcmsUu1fnGZxvR26DDG'
                   ]
                 },
                 'spentHeight': null,
@@ -487,7 +487,7 @@ describe('Addresses', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE'
+                    'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A'
                   ],
                 },
                 'spentHeight': null,
@@ -503,7 +503,7 @@ describe('Addresses', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'yUN2ZHVcy18UFmSAcrYWZgyz1NyhzY9BD7'
+                    'qJRMt7sjnBkPjw2XscrMKUmaXbhaWKdBPa'
                   ]
                 },
                 'spentHeight': null,
@@ -563,7 +563,7 @@ describe('Addresses', function() {
       var addresses = new AddressController(node);
 
       var req = {
-        addrs: 'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE,yUN2ZHVcy18UFmSAcrYWZgyz1NyhzY9BD7',
+        addrs: 'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A,qJRMt7sjnBkPjw2XscrMKUmaXbhaWKdBPa',
         query: {},
         body: {}
       };
@@ -595,7 +595,7 @@ describe('Addresses', function() {
                 'vout': 1,
                 'sequence': 4294967295,
                 'n': 0,
-                'addr': 'yU4ALabEhMFaXtqJBGRKySW4qCXQG365uR',
+                'addr': 'qbMjsLAJTU41hE1dSwiSgLSCjz7fmuWB7D',
                 'valueSat': 53540000,
                 'value': 0.5354,
                 'doubleSpentTxID': null
@@ -605,7 +605,7 @@ describe('Addresses', function() {
                 'vout': 2,
                 'sequence': 4294967295,
                 'n': 1,
-                'addr': 'ygKnjKcpevopnXUQFD9CrQ4huRmspzbajv',
+                'addr': 'qJEZGEZf6qFqGbk81LzvSmXDxw9V3PyuLH',
                 'valueSat': 299829,
                 'value': 0.00299829,
                 'doubleSpentTxID': null
@@ -620,7 +620,7 @@ describe('Addresses', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'ydFWt96q1AJzG7rQQPYygGpnRG3djmG8nJ'
+                    'qagS4nZ2eMzCzN1UcmsUu1fnGZxvR26DDG'
                   ]
                 }
               },
@@ -632,7 +632,7 @@ describe('Addresses', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE'
+                    'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A'
                   ],
                 }
               },
@@ -644,7 +644,7 @@ describe('Addresses', function() {
                   'reqSigs': 1,
                   'type': 'pubkeyhash',
                   'addresses': [
-                    'yUN2ZHVcy18UFmSAcrYWZgyz1NyhzY9BD7'
+                    'qJRMt7sjnBkPjw2XscrMKUmaXbhaWKdBPa'
                   ]
                 }
               }
@@ -701,7 +701,7 @@ describe('Addresses', function() {
       var addresses = new AddressController(node);
 
       var req = {
-        addrs: 'yfYhcwQkixQFgYV8trXmXTajQynSNbRBFE,yUN2ZHVcy18UFmSAcrYWZgyz1NyhzY9BD7',
+        addrs: 'qLFaFjbX8KYrp84VZyUyJEuVQXUBNmR78A,qJRMt7sjnBkPjw2XscrMKUmaXbhaWKdBPa',
         query: {noSpent: '1', noScriptSig: '1', noAsm: '1'},
         body: {}
       };

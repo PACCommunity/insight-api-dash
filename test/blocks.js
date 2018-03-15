@@ -3,7 +3,7 @@
 var should = require('should');
 var sinon = require('sinon');
 var BlockController = require('../lib/blocks');
-var bitcore = require('bitcore-lib-dash');
+var bitcore = require('bitcore-lib-pac');
 var _ = require('lodash');
 
 var blocks = require('./data/blocks.json');
@@ -111,7 +111,7 @@ describe('Blocks', function() {
       'chainwork': '00000000000000000000000000000000000000000000000147108bdaa532b7cf',
       'previousblockhash': '00000000000025fbeac57a69598c7aa4c26954e33aba1e1883bb4bf168e8e6b4',
       'nextblockhash': '000000000000a0b730b5be60e65b4a730d1fdcf1d023c9e42c0e5bf4a059f709',
-      'reward': '3.88010204',
+      'reward': '18400.00000000',
       'isMainChain': true,
       'poolInfo': {}
     };
@@ -320,7 +320,7 @@ describe('Blocks', function() {
     var cb = function(err, res) {
       should.exist(res);
       var reward = res;
-      should(reward).eql('5.00000000');
+      should(reward).eql('11040.00000000');
       done();
     };
 
@@ -347,7 +347,7 @@ describe('Blocks', function() {
     var cb = function(err, res) {
       should.exist(res);
       var reward = res;
-      should(reward).eql('6.07737750');
+      should(reward).eql('14720.00000000');
       done();
     };
 
@@ -374,7 +374,7 @@ describe('Blocks', function() {
     var cb = function(err, res) {
       should.exist(res);
       var reward = res;
-      should(reward).eql('3.88010204');
+      should(reward).eql('18400.00000000');
       done();
     };
 
