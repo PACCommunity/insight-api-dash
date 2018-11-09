@@ -1,7 +1,7 @@
 {
   "name": "insight-pac-api",
   "description": "A $PAC blockchain REST and web socket API service for Bitcore Node.",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "repository": "git://github.com/PACCommunity/insight-pac-api.git",
   "contributors": [
     {
