@@ -18,9 +18,10 @@ describe('Currency', function() {
       registered_masternodes_verified: 770
     },
     exchange_rates: {
-      dash_usd: 9.4858840414,
-      btc_usd: 682.93,
-      btc_dash: 0.01388998
+      pac_price: 9.4858840414,
+      btc_price: 682.93,
+      btc_pac: 0.01388998,
+      currency: 'USD'
     }
   };
 
@@ -30,8 +31,8 @@ describe('Currency', function() {
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.dash_usd);
-        (typeof response.data.dash_usd).should.equal('number');
+        should.exist(response.data.pac_price);
+        (typeof response.data.pac_price).should.equal('number');
         done();
       }
     };
@@ -49,17 +50,22 @@ describe('Currency', function() {
     };
     var currency = new TestCurrencyController({node: node});
     currency.exchange_rates = {
-      dash_usd: 9.4858840414,
-      btc_usd: 682.93,
-      btc_dash: 0.01388998
+      pac_price: 9.4858840414,
+      btc_price: 682.93,
+      btc_pac: 0.01388998,
+      currency: 'USD'
     };
-    currency.timestamp = Date.now() - 61000 * CurrencyController.DEFAULT_CURRENCY_DELAY;
-    var req = {};
+    currency.timestamp = Date.now() - 51000 * CurrencyController.DEFAULT_CURRENCY_DELAY;
+    var req = {
+      params: {
+        currency: 'USD'    
+      }
+    };
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.dash_usd);
-        response.data.dash_usd.should.equal(9.4858840414);
+        should.exist(response.data.pac_price);
+        response.data.pac_price.should.equal(9.4858840414);
         done();
       }
     };
@@ -77,17 +83,22 @@ describe('Currency', function() {
     };
     var currency = new TestCurrencyController({node: node});
     currency.exchange_rates = {
-      dash_usd: 9.4858840414,
-      btc_usd: 682.93,
-      btc_dash: 0.01388998
+      pac_price: 9.4858840414,
+      btc_price: 682.93,
+      btc_pac: 0.01388998,
+      currency: 'USD'
     };
     currency.timestamp = Date.now() - 65000 * CurrencyController.DEFAULT_CURRENCY_DELAY;
-    var req = {};
+    var req = {
+      params: {
+        currency: 'USSD'    
+      }
+    };
     var res = {
       jsonp: function(response) {
-        response.status.should.equal(200);
+        response.status.should.equal(400);
         should.exist(response.data);
-        response.data.dash_usd.should.equal(9.4858840414);
+        response.data.pac_price.should.equal(0);
         node.log.error.callCount.should.equal(1);
         done();
       }
@@ -107,17 +118,22 @@ describe('Currency', function() {
     };
     var currency = new TestCurrencyController({node: node});
     currency.exchange_rates = {
-      dash_usd: 9.4858840414,
-      btc_usd: 682.93,
-      btc_dash: 0.01388998
+      pac_price: 9.4858840414,
+      btc_price: 682.93,
+      btc_pac: 0.01388998,
+      currency: 'USD'
     };
     currency.timestamp = Date.now();
-    var req = {};
+    var req = {
+      params: {
+        currency: 'USD'    
+      }
+    };
     var res = {
       jsonp: function(response) {
         response.status.should.equal(200);
-        should.exist(response.data.dash_usd);
-        response.data.dash_usd.should.equal(9.4858840414);
+        should.exist(response.data.pac_price);
+        response.data.pac_price.should.equal(9.4858840414);
         request.callCount.should.equal(0);
         done();
       }
